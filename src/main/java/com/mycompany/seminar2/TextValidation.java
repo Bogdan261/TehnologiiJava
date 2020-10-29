@@ -21,10 +21,7 @@ public class TextValidation {
         for(int i = 0; i < linesFromText.length - 1; i+=2)
             if(linesFromText[i] != null)
               if( linesFromText[i].toLowerCase().trim().equals(word.toLowerCase().trim()) )
-                {return true;}
-              else 
-              {return false;
-              }
+                {return true;}              
         return false;           
     }
     
