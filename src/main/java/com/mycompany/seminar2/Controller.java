@@ -37,9 +37,15 @@ public class Controller extends HttpServlet {
       String word = request.getParameter("word");
       String definition = request.getParameter("definition");
       String captchaError ="";
-      int captchaAnswer = Integer.parseInt(request.getParameter("answer"));
-      if(captchaAnswer != Integer.parseInt(""+ session.getAttribute("answer")))
-          captchaError = "Wrong captcha answer";
+      int captchaAnswer = -999999;
+      String answerString = request.getParameter("answer");
+      if(answerString.equals(""))
+           captchaError = "Insert Captcha";
+      else
+      {   captchaAnswer = Integer.parseInt(answerString);
+          if (captchaAnswer != Integer.parseInt(""+ session.getAttribute("answer")))
+            captchaError = "Wrong captcha answer";
+      }
           
       String path = "" + LanguageFilePaths.filePathForLanguage.get(request.getParameter("language"));
       String wordError = TextValidation.checkWordValidity(word, path);
