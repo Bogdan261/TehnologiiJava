@@ -1,0 +1,85 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml"
+   xmlns:h = "http://java.sun.com/jsf/html"
+   xmlns:f = "http://java.sun.com/jsf/core">
+   
+   <h:body>
+      
+       <h:form>
+    <h:outputLabel for="topic">Topic: </h:outputLabel>     
+    <h:inputText value="#{setMeetings.topic}" required="true" id="topic" ></h:inputText>
+    
+    <br></br>
+    <h:outputLabel for="date">Start: </h:outputLabel>  
+    <h:inputText value="#{setMeetings.date}" required="true" id="date"  >
+    <f:convertDateTime pattern = "hh:mm" />
+    </h:inputText>
+    
+     <br></br>
+    <h:outputLabel for="duration">Duration: </h:outputLabel>  
+      <h:inputText value="#{setMeetings.duration}" required="true" id="duration"  >
+    <f:convertDateTime pattern = "hh:mm" />
+    </h:inputText>
+     <br></br>
+     
+    <h:commandButton action="#{setMeetings.compileData}" value="Submit"></h:commandButton>
+    </h:form>
+       <h1> Meetings </h1>
+        <h:dataTable value = "#{meetingsData.meetings}" var = "c">
+         
+         <h:column><f:facet name = "header">Id</f:facet>
+            #{c.id}
+         </h:column>
+         
+         <h:column><f:facet name = "header">Topic</f:facet>
+            #{c.topic}
+         </h:column>
+          <h:column><f:facet name = "header">Start</f:facet>
+            #{c.date}
+         </h:column>
+             <h:column><f:facet name = "header">Duration</f:facet>
+            #{c.duration}
+         </h:column>
+      </h:dataTable>
+       <br></br>
+         <h1> Persons </h1>
+        <h:dataTable value = "#{userData.persons}" var = "c">
+        
+            <h1> People </h1>
+         <h:column><f:facet name = "header">Person ID</f:facet>
+            #{c.id}
+         </h:column>
+         
+         <h:column><f:facet name = "header">Name</f:facet>
+            #{c.name}
+         </h:column>
+      </h:dataTable>
+         <br></br>
+        <h1> Meetings Atendees </h1>
+      <h:dataTable value = "#{meetingAtendees.meetings}" var = "c">
+         
+         <h:column><f:facet name = "header">Meeting Id</f:facet>
+            #{c.meetingId}
+         </h:column>
+         <h:column><f:facet name = "header">Topic Id</f:facet>
+            #{c.personId}
+         </h:column>
+      </h:dataTable>
+       
+       <h:form>
+            <h:outputLabel for="MeetingId">Meeting Id: </h:outputLabel> 
+           <h:inputText value="#{setMeetingAtendee.meetingId}" required="true"  id="MeetingId"></h:inputText>
+           <br> </br>
+           <h:outputLabel for="PersonId">Person Id: </h:outputLabel> 
+           <h:inputText value="#{setMeetingAtendee.participantId}" required="true"  id="PersonId"></h:inputText>
+           <br> </br>
+           <h:commandButton action="#{setMeetingAtendee.compileData}" value="Submit"></h:commandButton>
+      </h:form>
+      <h:form>
+         <h:commandButton  action = "#{navigationController.moveToHome}"
+            value = "Back To Home Page" />
+      </h:form>
+   </h:body>
+</html>

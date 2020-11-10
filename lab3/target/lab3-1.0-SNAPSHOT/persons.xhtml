@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml"
+   xmlns:h = "http://java.sun.com/jsf/html"
+   xmlns:f = "http://java.sun.com/jsf/core"   >
+   
+   <h:body>
+      <h2>This is Page1</h2>
+      
+      <h:form>
+           <h:inputText value="#{setPersons.name}" required="true" requiredMessage="Username is required" id="id"></h:inputText>
+           <h:commandButton action="#{setPersons.compileData}" value="Submit"></h:commandButton>
+      </h:form>
+      
+      
+      
+      <h:dataTable value = "#{userData.persons}" var = "c">
+         
+         <h:column><f:facet name = "header">Person ID</f:facet>
+            #{c.id}
+         </h:column>
+         
+         <h:column><f:facet name = "header">Name</f:facet>
+            #{c.name}
+         </h:column>
+      </h:dataTable>
+      
+      
+      
+      <h:form>
+        <h:commandButton  action = "#{navigationController.moveToHome}"
+            value = "Back To Home Page" />
+      </h:form>
+      
+   </h:body>
+</html>
