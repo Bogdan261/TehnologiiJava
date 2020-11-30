@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns = "http://www.w3.org/1999/xhtml"
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/WEB-INF/page.xhtml" >
+        <ui:define name="content">
+
+            <h:form>
+                <h:inputText value="#{setLocations.name}" required="true" requiredMessage="Location is required" id="id"></h:inputText>
+                <h:commandButton action="#{setLocations.compileData}" value="Submit"></h:commandButton>
+            </h:form>
+
+
+            <h1> Locations </h1>
+            <h:dataTable value = "#{locationsData.locations}" var = "c">
+                <h:column><f:facet name = "header">Location ID</f:facet>
+                        #{c.id}
+                </h:column>
+                <h:column><f:facet name = "header">Name</f:facet>
+                        #{c.name}
+                </h:column>
+            </h:dataTable>
+
+            <br> </br>
+            <h1> Meetings </h1>
+            <h:dataTable value = "#{meetingsData.meetings}" var = "c">
+
+                <h:column><f:facet name = "header">Id</f:facet>
+                        #{c.id}
+                </h:column>
+
+                <h:column><f:facet name = "header">Topic</f:facet>
+                        #{c.topic}
+                </h:column>
+                <h:column><f:facet name = "header">Start</f:facet>
+                        #{c.date}
+                </h:column>
+                <h:column><f:facet name = "header">Duration</f:facet>
+                        #{c.duration}
+                </h:column>
+            </h:dataTable>
+            <br> </br>
+            <h1> Meeting Locations </h1>
+            <h:dataTable value = "#{meetingLocations.meetings}" var = "c">
+
+                <h:column><f:facet name = "header">Meeting Id</f:facet>
+                        #{c.meetingId}
+                </h:column>
+                <h:column><f:facet name = "header">Location Id</f:facet>
+                        #{c.locationId}
+                </h:column>
+            </h:dataTable>
+
+            <h:form>
+                <h:outputLabel for="MeetingId">Meeting Id: </h:outputLabel> 
+                <h:inputText value="#{setMeetingLocation.meetingId}" required="true"  id="MeetingId"></h:inputText>
+                <br> </br>
+                <h:outputLabel for="PersonId">Location Id: </h:outputLabel> 
+                <h:inputText value="#{setMeetingLocation.locationId}" required="true"  id="LocationId"></h:inputText>
+                <br> </br>
+                <h:commandButton action="#{setMeetingLocation.compileData}" value="Submit"></h:commandButton>
+            </h:form>
+
+            <h:form>
+                <h:commandButton  action = "#{navigationController.moveToHome}"
+                                  value = "Back To Home Page" />
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+            </html>

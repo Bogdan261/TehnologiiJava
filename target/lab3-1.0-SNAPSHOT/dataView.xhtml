@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc = "http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:composition template="/WEB-INF/page.xhtml" >
+        <ui:define name="content">
+
+            <p:dataTable var="record" value="#{applicationData.records}">
+                <p:column headerText="Meeting Topic ">
+                    <h:outputText value="#{record.topic}" />
+                </p:column>
+
+                <p:column headerText="Meeting Location">
+                    <h:outputText value="#{record.location}" />
+                </p:column>
+
+                <p:column headerText="Meeting Participant">
+                    <h:outputText value="#{record.participant}" />
+                </p:column>
+
+            </p:dataTable>
+
+        </ui:define>
+    </ui:composition>
+</html>
